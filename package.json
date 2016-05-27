@@ -1,0 +1,61 @@
+{
+  "name": "blogsystem",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack -w",
+    "start":"node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yancey1204/blogSystem.git"
+  },
+  "author": "yancey",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yancey1204/blogSystem/issues"
+  },
+  "homepage": "https://github.com/yancey1204/blogSystem#readme",
+  "devDependencies": {
+      "babel-core": "latest",
+      "babel-eslint": "latest",
+      "babel-loader": "latest",
+      "babel-plugin-transform-runtime": "latest",
+      "babel-preset-es2015": "latest",
+      "babel-preset-react": "latest",
+      "babel-preset-stage-0": "latest",
+      "css-loader": "^0.23.1",
+      "eslint": "latest",
+      "eslint-config-airbnb": "latest",
+      "eslint-plugin-react": "latest",
+      "react-hot-loader": "latest",
+      "redux-devtools": "latest",
+      "redux-devtools-dock-monitor": "latest",
+      "redux-devtools-log-monitor": "latest",
+      "redux-logger": "latest",
+      "rimraf": "latest",
+      "style-loader": "latest",
+      "webpack": "latest",
+      "webpack-dev-server": "latest",
+      "webpack-merge": "latest"
+    },
+    "dependencies": {
+      "antd": "^0.12.12",
+      "chai": "^3.5.0",
+      "commander": "^2.9.0",
+      "debug": "^2.2.0",
+      "enzyme": "^2.0.0",
+      "keymirror": "^0.1.1",
+      "mocha": "^2.4.5",
+      "react": "^0.14.7",
+      "react-dom": "^0.14.7",
+      "react-redux": "^4.4.0",
+      "react-router": "^2.0.0",
+      "react-router-redux": "^4.0.0",
+      "redux": "^3.3.1",
+      "redux-actions": "^0.9.1",
+      "superagent": "^1.8.1"
+    }
+}
