@@ -1,24 +1,14 @@
+const { User } = require('./userService/userController');
+
 const express = require('express');
 const app = express();
 const PORT = 3000;
-const sqlite3 = require('sqlite3').verbose();
-const db = new sqlite3.Database(':memory:');
 
-db.serialize(function() {
-  db.run("CREATE TABLE lorem (info TEXT)");
+const user = new User();
+// user.createUser('zhihui yan', 'yancey1204', '690664076');
+// user.findUser('yancey1204', '690664076');
+user.registerNewUser('zhihui yan', 'yancey1204', '690664076');
 
-  var stmt = db.prepare("INSERT INTO lorem VALUES (?)");
-  for (var i = 0; i < 10; i++) {
-      stmt.run("Ipsum " + i);
-  }
-  stmt.finalize();
-
-  db.each("SELECT rowid AS id, info FROM lorem", function(err, row) {
-      console.log(row.id + ": " + row.info);
-  });
-});
-
-db.close();
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}!`);
 });

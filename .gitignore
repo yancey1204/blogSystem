@@ -1,6 +1,7 @@
 # Logs
 logs
 *.log
+blog.db-journal
 npm-debug.log*
 
 # Runtime data
