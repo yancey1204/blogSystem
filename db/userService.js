@@ -1,5 +1,5 @@
 const user = {
-  getUserId: `SELECT id FROM users
+  getUsername: `SELECT username FROM users
               WHERE  username = ? AND password = ?`,
 
   insertUser: `INSERT INTO users

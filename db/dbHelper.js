@@ -1,40 +1,24 @@
 const sqlite = require('sqlite3').verbose();
-const user = require('./user');
+const userService = require('./userService');
 
 class DbHelper {
   constructor() {
-    this.db = null;
+    this.db = new sqlite.Database('./blog.db');
   }
 
   closeDb() {
-    console.log('closeDb');
     this.db.close();
   }
 
   findUser(username, password, callback) {
-    const resolve = callback || null;
-    const stmt = this.db.prepare(user.getUserId);
-    stmt.get(username, password, (err, userid) => {
-      console.log(userid);
-      if (!userid) { resolve; }
-    });
-    stmt.finalize();
+    const stmt = this.db.prepare(userService.getUsername);
+    stmt.get(username, password, callback);
   }
 
-  insertUser(displayName, username, password) {
-    const stmt = this.db.prepare(user.insertUser);
-    stmt.run(displayName, username, password, '', '', '');
-    stmt.finalize();
-  }
-
-  createDb() {
-    console.log('createDb blog.db');
-    this.db = new sqlite.Database('./blog.db');
-  }
-
-  openDb() {
-    this.createDb();
+  insertUser(displayName, username, password, callback) {
+    const stmt = this.db.prepare(userService.insertUser);
+    stmt.run(displayName, username, password, '', '', '', callback);
   }
 }
 
-module.exports = { DbHelper };
+module.exports = new DbHelper();
