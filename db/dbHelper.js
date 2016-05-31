@@ -1,4 +1,5 @@
 const sqlite = require('sqlite3').verbose();
+const user = require('./user');
 
 class DbHelper {
   constructor() {
@@ -10,28 +11,20 @@ class DbHelper {
     this.db.close();
   }
 
-  findUser(displayName, username, password, callback) {
+  findUser(username, password, callback) {
     const resolve = callback || null;
-    const sql = `SELECT id FROM users
-                 WHERE  username = ? AND password = ?`;
-    const stmt = this.db.prepare(sql);
+    const stmt = this.db.prepare(user.getUserId);
     stmt.get(username, password, (err, userid) => {
-      if (!userid) { resolve(displayName, username, password); }
+      console.log(userid);
+      if (!userid) { resolve; }
     });
     stmt.finalize();
   }
 
   insertUser(displayName, username, password) {
-    const sql = `INSERT INTO users
-                    (display_name, username, password, external_token, external_source, token)
-                VALUES (?, ?, ?, ?, ?, ?)`;
-    const stmt = this.db.prepare(sql);
+    const stmt = this.db.prepare(user.insertUser);
     stmt.run(displayName, username, password, '', '', '');
     stmt.finalize();
-  }
-
-  registerNewUser(displayName, username, password) {
-    this.findUser(displayName, username, password, this.insertUser.bind(this));
   }
 
   createDb() {
