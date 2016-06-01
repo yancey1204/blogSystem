@@ -1,10 +1,12 @@
-const dbHelper = require('../db/dbHelper');
+const sqlite = require('sqlite3').verbose();
+const userService = require('../db/userService');
+const db = new sqlite.Database('./blog.db');
 
 const auth = {
   registerNewUser: (displayName, username, password, callback) => {
-    dbHelper.findUser(username, password, (err, row) => {
+    db.get(userService.getUsername, username, password, (err, row) => {
       if (!row) {
-        dbHelper.insertUser(displayName, username, password);
+        db.run(userService.insertUser, displayName, username, password, '', '', '');
       } else { callback(`${row.username} already exists`); }
     });
   },
