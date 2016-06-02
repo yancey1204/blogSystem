@@ -7,6 +7,7 @@ const auth = {
     db.get(userService.getUsername, username, password, (err, row) => {
       if (!row) {
         db.run(userService.insertUser, displayName, username, password, '', '', '');
+        callback(null);
       } else { callback(`${row.username} already exists`); }
     });
   },
