@@ -10,6 +10,17 @@ const blog = {
       } else { callback(`${row.title} already exists`); }
     });
   },
+
+  getBlogs: (userId, callback) => {
+    db.get(blogService.getBlogs, (err, rows) => {
+      console.log(333);
+      console.log(`err ${err}`);
+      console.log(`rows ${rows}`);
+      if (rows) {
+        callback(rows);
+      }
+    });
+  },
 };
 
 module.exports = { blog };

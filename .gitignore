@@ -3,6 +3,7 @@ logs
 *.log
 blog.db-journal
 npm-debug.log*
+assets/
 
 # Runtime data
 pids
