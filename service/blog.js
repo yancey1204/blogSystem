@@ -11,13 +11,13 @@ const blog = {
     });
   },
 
-  getBlogs: (userId, callback) => {
+  getBlogs: (callback) => {
     db.get(blogService.getBlogs, (err, rows) => {
-      console.log(333);
-      console.log(`err ${err}`);
       console.log(`rows ${rows}`);
-      if (rows) {
+      if (!err && rows !== undefined) {
         callback(rows);
+      } else {
+        callback([]);
       }
     });
   },

@@ -11,6 +11,14 @@ const auth = {
       } else { callback(`${row.username} already exists`); }
     });
   },
+
+  login: (username, password, callback) => {
+    db.get(userService.getUserId, username, password, (err, row) => {
+      if (row) {
+        callback(row);
+      }
+    });
+  },
 };
 
 module.exports = { auth };
